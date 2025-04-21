@@ -53,7 +53,8 @@ const LoginPage = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        // `${process.env.REACT_APP_BACKEND_URL}/login`,
+        "https://a-a-mart-server-with-stripe.onrender.com/login",
         {
           email: values.email,
           password: values.password,
