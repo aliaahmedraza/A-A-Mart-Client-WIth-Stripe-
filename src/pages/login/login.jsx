@@ -53,7 +53,7 @@ const LoginPage = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/login",
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         {
           email: values.email,
           password: values.password,

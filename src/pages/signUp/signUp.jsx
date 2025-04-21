@@ -28,7 +28,7 @@ const SignupPage = () => {
     { setSubmitting, resetForm, setFieldError }
   ) => {
     try {
-      const response = await axios.post("http://localhost:3002/signup", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
         email: values.email,
           password: values.password,
       },{ withCredentials: true } );

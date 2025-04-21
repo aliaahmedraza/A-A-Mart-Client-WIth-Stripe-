@@ -9,7 +9,7 @@ export default function OrderPage() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-  const apiURL = "http://localhost:3002";
+  const apiURL = process.env.REACT_APP_BACKEND_URL;
   const calculateTotalPrice = useCallback(
     () =>
       cartItems.reduce((sum, item) => {

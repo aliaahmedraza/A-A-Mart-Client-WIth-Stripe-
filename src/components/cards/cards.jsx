@@ -18,7 +18,7 @@ const Cards = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/product");
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/product`);
         if (Array.isArray(response.data.products)) {
           setCardsData(response.data.products);
         } else {

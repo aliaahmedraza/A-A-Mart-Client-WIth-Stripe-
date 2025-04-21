@@ -23,7 +23,7 @@ function SearchBox() {
     setIsLoading(true);
 
     try {
-      const response = await axios.get("http://localhost:3002/search", {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/search`, {
         params: { title: query },
       });
 

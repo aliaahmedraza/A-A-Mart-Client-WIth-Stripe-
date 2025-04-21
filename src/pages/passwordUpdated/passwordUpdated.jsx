@@ -24,7 +24,7 @@ const UpdatePasswordPage = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.put(
-        `http://localhost:3002/updatepassword/${token}`,
+        `${process.env.REACT_APP_BACKEND_URL}/updatepassword/${token}`,
         {
           password: values.password,
         }
