@@ -25,20 +25,26 @@ const PrivateRoute = () => {
 const AllRoutes = () => {
   const dispatch = useDispatch();
   const token = Cookies.get("token");
-
   React.useEffect(() => {
-    if (!token) {
-      dispatch(setAuthenticated(false));
-      return;
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const expiryTime = decodedToken.exp * 1000;
+        const currentTime = Date.now();
+
+        if (currentTime > expiryTime) {
+          dispatch(setAuthenticated(false));
+        } else {
+          dispatch(setAuthenticated(true)); 
+        }
+      } catch (error) {
+        console.error("Error decoding the token:", error);
+        dispatch(setAuthenticated(false));
+      }
+    } else {
+      dispatch(setAuthenticated(false)); 
     }
-    try {
-      const { exp } = jwtDecode(token);
-      const isValid = Date.now() < exp * 1000;
-      dispatch(setAuthenticated(isValid));
-    } catch (err) {
-      dispatch(setAuthenticated(false));
-    }
-  }, [dispatch, token]);
+  }, [dispatch,token]); 
 
   return (
     <CartProvider>
